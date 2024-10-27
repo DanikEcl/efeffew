@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <!-- Подключаем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <title>Советы</title>
+    <style>
+        #mapid {
+            height: 1000px;
+            width: 100%;
+        }
+
+        .leaflet-popup-content {
+    user-select: none; /* Запрещаем выделение текста */
+}
+
+        .draggable-control {
+            background: rgba(255, 255, 255, 0.8);
+            /* Полупрозрачный белый фон */
+            border: 2px solid #007bff;
+            /* Синяя граница */
+            border-radius: 5px;
+            /* Закругленные углы */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            /* Тень */
+            padding: 10px;
+            /* Увеличенные отступы */
+            background: white;
+            /* Фон */
+            border: 1px solid gray;
+            /* Граница */
+            padding: 5px;
+            /* Отступы */
+            cursor: move;
+            /* Курсор при наведении */
+            z-index: 1000;
+            /* Уровень слоя */
+
+            top: 50px;
+            /* Положение по вертикали */
+            left: 10px;
+            /* Положение по горизонтали */
+        }
+
+        .draggable-control button {
+            background: #007bff;
+            /* Синий фон */
+            color: white;
+            /* Белый текст */
+            border: none;
+            /* Без границы */
+            border-radius: 5px;
+            /* Закругленные углы */
+            padding: 5px 10px;
+            /* Отступы */
+            margin: 3px;
+            /* Отступы между кнопками */
+            cursor: pointer;
+            /* Курсор при наведении */
+            transition: background 0.3s ease;
+            /* Плавный переход фона */
+        }
+
+        .draggable-control button:hover {
+            background: #0056b3;
+            /* Темнее при наведении */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <!-- Название сайта -->
+        <img class="logo" src="LOGO2-removоfоebg-preview.png" alt="">
+        <!-- Название сайта -->
+        <div class="navbar-brand">Tourist's Diary</div>
+
+        <!-- Меню -->
+        <div class="navbar-menu">
+            <a href="index.html" class="navbar-item">Главная</a>
+            <a href="news.html" class="navbar-item">Новости</a>
+            <a href="tips.html" class="navbar-item">Советы</a>
+            <a href="about.html" class="navbar-item">О нас</a>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="social-icons">
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+    </div>
+
+    <div id="mapid" style="height: 900px;"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        var mymap = L.map('mapid', {
+            zoomControl: false // Отключаем стандартные элементы управления масштабированием
+        }).setView([31.505, 30.09], 3);
+
+
+        var bounds = [[-120, -200], [120, 200]];  // Границы всей Земли (от -90° до 90° широты и от -180° до 180° долготы)
+        mymap.setMaxBounds(null);
+        var greenIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41], // Размер иконки
+            iconAnchor: [12, 41], // Точка привязки (центр нижней части)
+            popupAnchor: [1, -34], // Точка привязки попапа
+            shadowSize: [41, 41] // Размер тени
+        });
+        // Красная иконка
+        var redIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // Синяя иконка
+        var blueIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // Оранжевая иконка
+        var orangeIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // Жёлтая иконка
+        var yellowIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        // Фиолетовая иконка
+        var purpleIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(mymap);
+
+       
+
+        //Эверест
+        L.marker([27.9881, 86.9250], { icon: greenIcon }).addTo(mymap)
+            .bindPopup(`
+        <div style="text-align: center;">
+            <h3>Гора Эверест</h3>
+            <img src="https://cdn2.tu-tu.ru/image/pagetree_node_data/1/32620bb65f7e7443b5bd325aacde70fb/" width="200" height="200" alt="Гора Эверест" style="margin-bottom: 10px;">
+            <p>Перед тем как взобраться на Эверест, убедитесь, что у вас есть достаточно снега и веселого настроения! Пройдите тренировочные маршруты, чтобы не упасть в обморок от нехватки дыхания или от того, что ваши ботинки не такие стильные, как у горных альпинистов.</p>
+        </div>
+    `)
+
+
+        // 1. Париж - Эйфелева башня
+        L.marker([48.8584, 2.2945]).addTo(mymap)
+            .bindPopup(`
+            <div style="text-align: center;">
+                <h3>Эйфелева башня</h3>
+                <img src="https://gde-ostanovitsya.com/wp-content/uploads/2023/10/chto_posmotret_v_parizhe-za_1_den_bashnya_eyfelya-3.jpg" width="200" height="200" alt="Эйфелева башня" style="margin-bottom: 10px;">
+                <p>"Когда будете у Эйфелевой башни, попробуйте громко прокричать ‘Я люблю круассаны!’ и посмотрите, сколько туристов обернутся. Это проверенный способ завести новых друзей!"</p>
+            </div>
+        `);
+
+        // 2. Нью-Йорк - Статуя Свободы
+        L.marker([40.6892, -74.0445]).addTo(mymap)
+            .bindPopup(`
+            <div style="text-align: center;">
+                <h3>Статуя Свободы</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a1/Statue_of_Liberty_7.jpg" width="200" height="200" alt="Статуя Свободы" style="margin-bottom: 10px;">
+                <p>Знаменитый символ свободы в Нью-Йорке.</p>
+            </div>
+        `);
+
+        // 3. Рим - Колизей
+        L.marker([41.8902, 12.4922], { icon: greenIcon }).addTo(mymap)
+            .bindPopup(`
+            <div style="text-align: center;">
+                <h3>Колизей</h3>
+                <img src="https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/583665dc-c63e-4d7e-bdc4-c80bfad7756a/-/format/webp/-/resize/1300x/" width="200" height="200" alt="Колизей" style="margin-bottom: 10px;">
+                <p>Древний амфитеатр в сердце Рима.</p>
+            </div>
+        `);
+
+        // 4. Египет - Пирамиды Гизы
+        L.marker([29.9792, 31.1342], { icon: redIcon }).addTo(mymap)
+            .bindPopup(`
+            <div style="text-align: center;">
+                <h3>Пирамиды Гизы</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg" width="200" height="200" alt="Пирамиды Гизы" style="margin-bottom: 10px;">
+                <p>Величайшие пирамиды Древнего Египта.</p>
+            </div>
+        `);
+
+        // 5. Австралия - Сиднейский оперный театр
+        L.marker([-33.8568, 151.2153]).addTo(mymap)
+            .bindPopup(`
+            <div style="text-align: center;">
+                <h3>Сиднейский оперный театр</h3>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Sydney_Opera_House_Sails.jpg" width="200" height="200" alt="Сиднейский оперный театр" style="margin-bottom: 10px;">
+                <p>Иконное здание в Сиднее, Австралия.</p>
+            </div>
+        `);
+
+        // 6. Токио - Токийская телебашня
+        L.marker([35.6586, 139.7454], { icon: orangeIcon }).addTo(mymap)
+            .bindPopup(`
+            <div style="text-align: center;">
+                <h3>Токийская телебашня</h3>
+                <img src="https://img.lovepik.com/bg/20240101/aerial-view-of-tokyo-tower-at-night_2599596_wh860.jpg!/fw/860" width="200" height="200" alt="Токийская телебашня" style="margin-bottom: 10px;">
+                <p>"Когда будете на Токийской телебашне, попытайтесь найти внизу людей, которые выглядят как муравьи. Делайте селфи с ‘муравейником’ на фоне, чтобы получить идеальный кадр!"</p>
+            </div>
+        `);
+
+        // 7. Китай - Великая китайская стена
+        L.marker([40.2519, 116.5704], { icon: purpleIcon }).addTo(mymap)
+            .bindPopup(`
+            <div style="text-align: center;">
+                <h3>Великая китайская стена</h3>
+                <img src="https://cdn.tripster.ru/thumbs2/b1d4c1e8-df22-11ee-99b0-6a85506e32b3.1220x600.jpeg" width="200" height="200" alt="Великая китайская стена" style="margin-bottom: 10px;">
+                <p>Одна из самых знаменитых и длинных стен в мире.</p>
+            </div>
+        `);
+
+      
+
+        
+
+        L.marker([45.4642, 9.1916]).addTo(mymap)
+    .bindPopup(`
+    <div style="text-align: center;">
+        <h3>Миланский собор</h3>
+        <img src="https://novate.ru/files/u39778/001-milanskij-kafedralnyj-sobor.jpg" width="200" height="200" alt="Миланский собор" style="margin-bottom: 10px;">
+        <p>Готический собор в центре Милана, одна из крупнейших церквей в мире.</p>
+    </div>
+`);
+
+
+
+
+
+    var smallIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [15, 25], // Уменьшение размера иконки
+            iconAnchor: [7, 25],
+            popupAnchor: [1, -20],
+            shadowSize: [25, 25]
+        });
+
+
+
+
+
+
+L.marker([53.2833, 107.9414]).addTo(mymap)
+    .bindPopup(`
+        <div style="text-align: center;">
+            <h3>Байкал, Россия</h3>
+            <img src="https://s4.stc.all.kpcdn.net/family/wp-content/uploads/2022/02/den_ozera_baikal_oblogka_960-960x540.jpg" width="200" height="200" alt="Байкал" style="margin-bottom: 10px;">
+            <p>Глубочайшее озеро в мире.</p>
+        </div>
+    `);
+
+
+
+    L.marker([43.3474, 76.9211]).addTo(mymap) // Алматы, Медео
+    .bindPopup(`
+        <div style="text-align: center;">
+            <h3>Медео, Алматы</h3>
+            <img src="https://visitalmaty.crocos.kz/wp-content/uploads/2023/01/%D0%BC%D0%B5%D0%B4%D0%B5%D0%BE.jpg" width="200" height="200" alt="Медео" style="margin-bottom: 10px;">
+            <p>Самое высокогорное катание на коньках в мире.</p>
+        </div>
+    `);
+
+
+
+
+L.marker([44.1038, 79.7915]).addTo(mymap) // Алматы, Чарынский каньон
+    .bindPopup(`
+        <div style="text-align: center;">
+            <h3>Чарынский каньон</h3>
+            <img src="https://visitalmaty.crocos.kz/wp-content/uploads/2022/05/%D1%87%D0%B0%D1%80%D1%8B%D0%BD-2-e1702981474111.jpg" width="200" height="200" alt="Чарынский каньон" style="margin-bottom: 10px;">
+            <p>Уникальные скальные образования и потрясающие виды.</p>
+        </div>
+    `);
+
+L.marker([51.1694, 71.4372],{ icon: orangeIcon }).addTo(mymap) // Нур-Султан, Байтек
+    .bindPopup(`
+        <div style="text-align: center;">
+            <h3>Байтерек, Астана</h3>
+            <img src="https://fs.tonkosti.ru/sized/c800x800/bz/y3/bzy3ar8smn4ko4wsks8s4o80c.jpg" width="200" height="200" alt="Байтек" style="margin-bottom: 10px;">
+            <p>Символ столицы Казахстана.</p>
+        </div>
+    `);
+
+
+
+    
+        var draggableControl = L.control({ position: 'topleft' });
+        draggableControl.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'draggable-control');
+            div.innerHTML = '<button onclick="zoomIn()">+</button><button onclick="zoomOut()">-</button>';
+            L.DomEvent.disableClickPropagation(div); // Отключаем всплытие событий клика
+            return div;
+        };
+        draggableControl.addTo(mymap);
+
+        // Функции для увеличения и уменьшения масштаба
+        window.zoomIn = function () {
+            mymap.zoomIn();
+        };
+        window.zoomOut = function () {
+            mymap.zoomOut();
+        };
+
+        // Делаем элемент управления перетаскиваемым
+        var controlDiv = document.querySelector('.draggable-control');
+        L.DomEvent.on(controlDiv, 'mousedown', function (e) {
+            var shiftX = e.clientX - controlDiv.getBoundingClientRect().left;
+            var shiftY = e.clientY - controlDiv.getBoundingClientRect().top;
+
+            function moveAt(pageX, pageY) {
+                controlDiv.style.left = pageX - shiftX + 'px';
+                controlDiv.style.top = pageY - shiftY + 'px';
+            }
+
+            function onMouseMove(e) {
+                moveAt(e.pageX, e.pageY);
+            }
+
+            // Перемещение элемента управления
+            document.addEventListener('mousemove', onMouseMove);
+            controlDiv.onmouseup = function () {
+                document.removeEventListener('mousemove', onMouseMove);
+                controlDiv.onmouseup = null;
+            };
+            document.onmouseup = function () {
+                document.removeEventListener('mousemove', onMouseMove);
+                document.onmouseup = null; // Удаляем обработчик
+            };
+
+            // Отключаем выбор текста
+            controlDiv.ondragstart = function () {
+                return false;
+            };
+        });
+    </script>
+</body>
+
+</html>

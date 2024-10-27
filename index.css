@@ -1,0 +1,359 @@
+@import '../css/vars.css';
+@import '../css/grid.css';
+
+
+@font-face {
+	font-family: montserrat-g;
+	src: url(../fonts/Montserrat-Regular.woff2);
+}
+
+@font-face {
+	font-family: montserrat-g;
+	src: url(../fonts/Montserrat-Bold.woff2);
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: montserrat-g;
+	src: url(../fonts/Montserrat-Black.woff2);
+	font-weight: 900;
+}
+
+@font-face {
+	font-family: montserrat-g;
+	src: url(../fonts/Montserrat-SemiBold.woff2);
+	font-weight: 600;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: montserrat-g, sans-serif;
+}
+body::-webkit-scrollbar {
+    display: none; /* Для Chrome, Safari и Opera */
+}
+
+/* Панель навигации */
+.navbar {
+    display: flex;
+    top: 0;
+    justify-content: space-between;
+    /* Элементы на противоположных концах */
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    margin: 0;
+    position: fixed; /* Закрепляем панель */
+    z-index: 1000;
+    width: 98%;
+}
+
+
+.navbar a {
+    font-size: 24px;
+}
+
+/* Название сайта */
+.navbar-brand {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+.navbar-brand {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+	margin-left: -149px
+	
+}
+
+.logo {
+    max-width: 35px; /* Ограничиваем ширину логотипа */
+    height: auto; /* Сохраняем пропорции изображения */
+    margin-right: 1rem; /* Отступ справа для визуального отделения от других элементов */
+}
+/* Элементы меню */
+.navbar-menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item {
+    color: white;
+    padding: 0 20px;
+    text-decoration: none;
+    margin-left: 60px;
+    
+
+}
+
+.navbar-item:hover {
+    animation: blink 1s infinite;
+    font-size: 30px;
+    /* Увеличение размера текста */
+    transition: font-size 0.5s;
+    /* Плавный переход */
+    background: linear-gradient(90deg, rgba(255, 105, 180, 0.8), rgba(255, 105, 180, 0.4));
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    background: linear-gradient(90deg, rgba(0, 170, 85, 0.8), rgba(0, 204, 102, 0.4));
+    box-shadow: 0 0 20px rgba(0, 135, 68, 0.5);
+}
+
+.down-arrow {
+    font-size: 50px; /* увеличиваем размер стрелки */
+    text-align: center; /* выравнивание по центру */
+    margin: 20px; /* добавляем отступы */
+    animation: bounce 1s infinite; /* добавляем анимацию */
+    
+
+    
+}
+
+/* Анимация "прыжка" */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Иконки социальных сетей */
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.social-icons a {
+    color: white;
+    padding: 0 15px;
+    font-size: 20px;
+}
+
+.social-icons a:hover {
+    color: #1da1f2;
+    /* Изменение цвета при наведении (для Twitter, например) */
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('image/main1.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.second-image {
+    width: 100%;
+    height: 100%;
+    /* Можете изменить высоту */
+    background-image: url('image/main2.png');
+    /* Замените на путь ко второму изображению */
+    background-size: cover;
+    background-position: center;
+}
+
+.third-image {
+    width: 100%;
+    height: 100%;
+    /* Можете изменить высоту */
+    background-image: url('image/main3.png');
+    /* Замените на путь ко второму изображению */
+    background-size: cover;
+    background-position: center;
+}
+
+.text-block {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* тень черного цвета */
+}
+
+.subtext {
+    font-size: 20px;
+    margin-top: 20px;
+    text-shadow: 0 0 5px black;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* тень черного цвета */
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    color: #fff; /* Цвет иконок */
+    text-decoration: none; /* Убираем подчеркивание */
+    margin: 0 3px; /* Отступы между иконками */
+    font-size: 24px; /* Размер иконок */
+    transition: color 0.3s; /* Плавный переход цвета */
+}
+
+a:hover {
+    color: #007bff; /* Цвет при наведении */
+}
+
+
+.button-container {
+    text-align: center; /* Центрирование текста */
+}
+
+.fancy-button {
+    background-color: #007bff; /* Начальный цвет фона */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем рамку */
+    padding: 15px 30px; /* Отступы */
+    font-size: 16px; /* Размер шрифта */
+    border-radius: 5px; /* Скругление углов */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s, transform 0.3s; /* Плавный переход */
+}
+
+.fancy-button:hover {
+    background-color: #0056b3; /* Цвет фона при наведении */
+    transform: scale(1.1); /* Увеличение кнопки при наведении */
+}
+
+.fancy-button:focus {
+    outline: none; /* Убираем обводку при фокусе */
+}
+
+
+
+
+.contact-section {
+   
+    padding: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.contact-section p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.contact-section h2 {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.contact-info i {
+    margin-right: 10px;
+}
+
+
+/* Медиазапрос для экранов шириной до 768px (мобильные устройства) */
+@media (max-width: 768px) {
+
+    /* Панель навигации */
+    .navbar {
+        flex-direction: column; /* Ставим элементы вертикально */
+        padding: 10px;
+        width: 100%;
+    }
+
+    .navbar a {
+        font-size: 18px; /* Уменьшаем размер шрифта для ссылок */
+    }
+
+    .navbar-item {
+        margin-left: 0; /* Убираем отступы слева */
+        padding: 10px 0; /* Увеличиваем отступы сверху и снизу */
+        padding: 0 10px;
+
+    }
+
+    /* Название сайта */
+    .navbar-brand {
+        font-size: 20px; /* Уменьшаем размер текста */
+    }
+
+    /* Размеры стрелки вниз */
+    .down-arrow {
+        font-size: 30px; /* Уменьшаем размер стрелки */
+    }
+
+    /* Социальные иконки */
+    .social-icons a {
+        font-size: 16px; /* Уменьшаем размер иконок */
+        padding: 0 10px; /* Уменьшаем отступы */
+    }
+
+    /* Контейнер с изображениями */
+    .container {
+        height: 80vh; /* Немного уменьшаем высоту */
+    }
+
+    .background-image, .second-image, .third-image {
+        height: 80vh; /* Меняем высоту изображений для лучшего отображения */
+    }
+
+    /* Заголовок и подзаголовок */
+    .main-title {
+        font-size: 30px; /* Уменьшаем заголовок */
+    }
+
+    .subtext {
+        font-size: 16px; /* Уменьшаем текст подзаголовка */
+    }
+
+    /* Кнопки */
+    .fancy-button {
+        padding: 10px 20px; /* Уменьшаем отступы у кнопок */
+        font-size: 14px; /* Уменьшаем размер текста кнопки */
+    }
+
+    /* Контактный раздел */
+    .contact-section {
+        padding: 10px; /* Уменьшаем внутренние отступы */
+        text-align: center; /* Выравниваем текст по центру */
+    }
+
+    .contact-section h2 {
+        font-size: 20px; /* Уменьшаем размер заголовка */
+    }
+
+    .contact-section p {
+        font-size: 14px; /* Уменьшаем размер текста */
+    }
+}

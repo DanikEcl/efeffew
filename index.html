@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная</title>
+
+	<script src="libs/btn/anim-menu-btn.min.js" defer></script>
+	<link rel="stylesheet" href="libs/swiper/swiper-bundle.min.css">
+	<script src="libs/swiper/swiper-bundle.min.js" defer></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+	<link rel="stylesheet" href="css/main.css">
+	<script src="js/app.js" defer></script>
+	<style>
+		.page {
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+		#globe-3d, #globe-2d-overlay, #globe-popup-overlay, .globe-popup {
+			display: block;
+			position: absolute;
+		}
+		
+		#globe-2d-overlay, #globe-popup-overlay {
+			pointer-events: none;
+		}
+		
+		.globe-popup {
+			top: 0;
+			left: 0;
+			background-color: white;
+			opacity: 0;
+			color: #111;
+			font-family: sans-serif;
+			padding: 5px 10px;
+			font-size: 15px;
+			border-radius: 3px;
+			filter: drop-shadow(0px 0px 3px #555555);
+		}
+		
+		.logo {
+    max-width: 35px; /* Ограничиваем ширину логотипа */
+    height: auto; /* Сохраняем пропорции изображения */
+    margin-right: 1rem; /* Отступ справа для визуального отделения от других элементов */
+}</style>
+	</head>
+
+</head>
+<body>
+	<div class="navbar">
+		<img class="logo" src="LOGO2-removоfоebg-preview.png" alt="">
+        <!-- Название сайта -->
+        <div class="navbar-brand">Tourist's Diary</div>
+        
+        <!-- Меню -->
+        <div class="navbar-menu">
+            <a href="index.html" class="navbar-item">Главная</a>
+            <a href="news.html" class="navbar-item">Новости</a>
+            <a href="tips.html" class="navbar-item">Советы</a>
+            <a href="about.html" class="navbar-item">О нас</a>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="social-icons">
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+    </div>
+	<div class="swiper slider">
+
+		<div class="slider-ui">
+
+			<div class="container header-wrapper">
+
+				<div class="top-line">
+
+					
+
+				</div>
+
+				<div class="header-content">
+
+					<div class="header-content__slide active">
+						<h1 class="letters">Пробуй!</h1>
+						<div class="header-content__info">
+							<p>Не бойся сделать первый шаг к новым открытиям! Каждый путь начинается с решения испытать что-то новое. Пусть каждая поездка станет для тебя возможностью пробовать, открывать и удивляться. Пробуй мир вместе с нами!</p><br>
+						</div>
+					</div>
+
+					<div class="header-content__slide">
+						<h1 class="letters">Исследуй</h1>
+						<div class="header-content__info">
+							<p> Каждый уголок планеты полон тайн и уникальных историй. Наша коллекция советов поможет тебе спланировать идеальное путешествие.</p><br>
+							<a href="tips.html"><button class="button button--main">Советы</button></a>
+						</div>
+					</div>
+
+					<div class="header-content__slide">
+						<h1 class="letters">Узнавай</h1>
+						<div class="header-content__info">
+							<p>Будь в курсе последних событий в мире путешествий! Мы собрали для тебя актуальные новости, интересные факты и свежие рекомендации. Узнай о новых маршрутах, обновлениях в сфере туризма и уникальных предложениях.</p><br>
+							<a href="news.html">
+						
+							<button class="button button--main1">Новости</button>
+						</a>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="header-bottom">
+					
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="swiper-wrapper">
+
+			<div class="swiper-slide slider__item">
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(https://images.wallpaperscraft.ru/image/single/luiz_ozero_gory_118841_3840x2400.jpg);"></div>
+				<div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/slide-6-layer-middle.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/slide--layer-front.png);"></div>
+			</div>
+			<div class="swiper-slide slider__item">
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(img/slides/slide-2-layer-back.jpg);"></div>
+				<div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/slide-2-layer-middle.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/slide-2-layer-front.png);"></div>
+			</div>
+			<div class="swiper-slide slider__item">
+				<div class="slider__layer" data-swiper-parallax="35%" style="background-image: url(https://img1.akspic.ru/crops/4/4/7/8/7/178744/178744-kordilera_uajuash-ozero_karuakocha-gornyj_hrebet-gora-atmosfera-1920x1080.jpg);"></div>
+				<div class="slider__layer" data-swiper-parallax="25%" style="background-image: url(img/slides/slide--layer-middle.png);"></div>
+				<div class="slider__layer" data-swiper-parallax="14%" style="background-image: url(img/slides/slide--layer-front.png);"></div>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

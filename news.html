@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <!-- Подключаем Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Новости</title>
+    <Style>body {
+       
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;  
+        height: 150vh;
+    }
+    
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+    }
+    
+    .news-item {
+        background-color: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    .news-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px 8px 0 0;
+        width: 100%; /* Занимает всю ширину родительского контейнера */
+    height: 200px; /* Фиксированная высота для всех картинок */
+    object-fit: cover; /* Картинка б    удет обрезаться, но пропорции сохранятся */
+    border-radius: 10px 10px 10px 10px;
+    }
+
+    .news-item a {
+    text-decoration: none;
+    color: inherit;
+}
+.news-item a:hover h2 {
+    color: #007bff; /* Меняем цвет заголовка при наведении */
+}
+        
+    .news-item h2 {
+        font-size: 25px;
+        margin: 15px 0 10px;
+    }
+    
+    .news-item p {
+        font-size: 20px;
+        color: #555;
+    }
+    </Style>
+</head>
+<body>
+    <div class="navbar">
+        <img class="logo" src="LOGO2-removоfоebg-preview.png" alt="">
+        <!-- Название сайта -->
+        <div class="navbar-brand">Tourist's Diary</div>
+
+        <!-- Меню -->
+        <div class="navbar-menu">
+            <a href="index.html" class="navbar-item">Главная</a>
+            <a href="news.html" class="navbar-item">Новости</a>
+            <a href="tips.html" class="navbar-item">Советы</a>
+            <a href="about.html" class="navbar-item">О нас</a>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="social-icons">
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+    </div>
+    <div class="container">
+        <h1></h1>
+        <h1>Последние Новости</h1>
+        <div class="news-grid">
+            <!-- Новость 1 -->
+            <div class="news-item">
+                <a href="news1.html">
+                <img src="https://canadaguidetour.com/wp-content/uploads/2017/11/ski_canadatour.jpg" alt="Новость 1">
+                <h2>Зима в Канаде
+                </h2>
+                <p>Канада – настоящая зимняя сказка, и горнолыжные курорты здесь создают идеальные условия для незабываемого отдыха всей семьей.</p>
+            </a>
+            </div>
+            <!-- Новость 2 -->
+            <div class="news-item">
+                <a href="news2.html">
+                <img src="https://assets.unenvironment.org/decadeonrestoration/2020-03/nature-3294681_1280%20%281%29.jpg" alt="Новость 2">
+                <h2>Отдых на Карибах</h2>
+                <p>Топ-5 Пляжей в Карибском Бассейне для Идеального Отпуска</p>
+            </a>
+            </div>
+            <!-- Новость 3 -->
+            <div class="news-item">
+                <a href="news3.html">
+                <img src="https://s.mediasole.ru/images/0/23185/Treehouse-Trio_Peter-Bahouth-main.jpg" alt="Новость 3">
+                <h2>Спрятаться от мира</h2>
+                <p>6 отелей для отдыха в потаённых уголках России</p>
+            </a>
+            </div>
+            <!-- Новость 4 -->
+            <div class="news-item">
+                <img src="https://m-dekor.by/catalog/3339/main.webp" alt="Новость 4">
+                <h2>Секреты Лондона</h2>
+                <p>Исследуйте Лондон с неожиданной стороны — найдите скрытые кафе, уединенные парки и необычные музеи, которые не встречаются в туристических путеводителях.</p>
+            </div>
+            <!-- Новость 5 -->
+            <div class="news-item">
+                <img src="https://avatars.dzeninfra.ru/get-zen_doc/759807/pub_5cbc21d583f87500b3348cdd_5cbc2a2888da1e00b5606e60/scale_1200" alt="Новость 5">
+                <h2>Скрытые жемчужины Ирландии</h2>
+                <p>Исландия славится своими потрясающими водопадами, но некоторые из них остаются вне внимания туристов</p>
+            </div>
+            <!-- Новость 6 -->
+            <div class="news-item">
+                <img src="https://alcomag.ua/upload/iblock/ce7/o2ffzhbnhau14kos6lzq9flvnt4dijfy.jpg" alt="Новость 6">
+                <h2>Вкусы Франции</h2>
+                <p>Для любителей вина мы собрали лучшие винодельни Франции, которые стоит посетить.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

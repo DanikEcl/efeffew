@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore the World</title>
+    <style>
+        
+
+        body {
+            background-color: #2c2c2c;
+            
+        }
+
+        .photo {
+            width: 100%;
+            height: 100vh;
+            /* Занимает всю высоту экрана */
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .caption {
+    position: absolute; /* Устанавливаем абсолютное позиционирование для текста */
+    bottom: 20px; /* Отступ от нижней границы контейнера */
+    margin-left: 60px;
+    margin-right: 60px;
+    text-align: center;
+   
+    color: white; /* Цвет текста */
+    font-size: 56px; /* Размер текста */
+    padding: 10px; /* Отступ внутри текста */
+    margin-bottom: 120px;
+}
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Чтобы изображение покрывало весь блок, сохраняя пропорции */
+        }
+
+        .container {
+            
+            margin-top: 0;
+            padding-top: 10px;
+            /* Отступ сверху для контейнера */
+            text-align: center;
+            color: #333;
+            max-width: 400px;
+            margin: auto 0;
+            /* Начинаем после высоты изображения и центрируем */
+            z-index: 2;
+        }
+
+        .circle-image {
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .circle-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Чтобы изображение масштабировалось по кругу */
+            display: block;
+        }
+
+        .text-box {
+            width: 400px;
+            height: 200px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            position: relative;
+            margin-top: 20px;
+            margin-left: 300px;
+        }
+
+        .text-box h1 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c2c2c;
+            margin-bottom: 10px;
+        }
+
+        .text-box p {
+            text-align: left;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .text-box a {
+            font-size: 12px;
+            color: #888;
+            text-decoration: none;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #d67341;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #a65c33;
+        }
+
+        .circle-decor {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .circle-decor.small {
+            width: 150px;
+            height: 150px;
+            background-color: #d67341;
+            top: 50%;
+            right: -30%;
+        }
+
+        .circle-decor.large {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: #333;
+            border-radius: 50%;
+            top: 15%;
+            right: -110%;
+            opacity: 0.6;
+        }
+
+        .star-decor.small {
+    width: 50px;
+    height: 50px;
+    background-color: #ffd700; /* Золотистый цвет */
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    position: absolute;
+    top: 20%;
+    left: -20%;
+}
+.gradient-decor.small {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Градиент */
+    border-radius: 50%;
+    bottom: 10%;
+    right: -50px;
+}
+
+.gradient-decor.large {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(135deg, #85dc52, #166151); /* Градиент */
+    border-radius: 50%;
+    top: 25%;
+    right: -100px;
+    opacity: 0.7;
+}
+        .circle-decor.large::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            /* Диаметр внутреннего круга */
+            height: 200px;
+            background-color: #2c2c2c;
+            /* Цвет фона страницы */
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .new-containers {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            /* Отступы между изображением и контейнерами */
+        }
+
+        .box {
+            width: 300px;
+            height: 400px;
+            margin: -70px 10px 0;
+            /* Отступы между контейнерами */
+            position: relative;
+            z-index: 3;
+            border-radius: 30px; /* Закругление углов */
+    overflow: hidden; /* Скрывает края дочерних элементов */
+        }
+
+        .top-half {
+            background-color: rgb(237, 161, 19);
+            /* Оранжевый цвет */
+            height: 40%;
+            /* Половина высоты контейнера */
+            display: flex; /* Для выравнивания элементов */
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center;
+    padding: 0px;
+    flex-direction: column; 
+        }
+
+        .top-half i {
+    font-size: 56px; /* Увеличьте значение для увеличения размера иконки */
+    color: white; /* Цвет иконки */
+    margin-bottom: px;
+}
+
+.top-half p {
+    color: #ffffff; /* Цвет текста под иконкой */
+    margin-top: 10px; /* Отступ сверху у текста */
+    font-size: 30px;
+    padding-top: 10px;
+    display: block; /* Убедитесь, что элемент блочный */
+}
+
+
+        .bottom-half {
+            background-color: white;
+            /* Белый цвет */
+            height: 60%;
+            /* Половина высоты контейнера */
+            display: flex; /* Для выравнивания элементов */
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center;
+    
+    padding: 10px;
+    flex-direction: column; 
+        }
+
+        .bottom-half p {
+    color: #555; /* Цвет текста */
+    line-height: 1.5; /* Высота строки для читаемости */
+    margin: 0;
+    text-align: center;
+    margin-top: -30px;
+}
+
+
+
+.quote {
+    background-color: #f9f9f9; /* Светлый фон */
+    border-left: 5px solid #d67341; /* Оранжевая левая граница */
+    padding: 15px 20px; /* Отступы */
+    margin: 20px 0; /* Отступы сверху и снизу */
+    font-style: italic; /* Курсивный текст */
+    color: #333; /* Цвет текста */
+    position: relative; /* Позиционирование для псевдоэлементов */
+    margin-top: 70px;
+}
+
+.quote::before {
+    content: "“"; /* Левые кавычки */
+    font-size: 2em; /* Размер кавычек */
+    color: #d67341; /* Цвет кавычек */
+    position: absolute; /* Позиционирование */
+    top: -6px; /* Расположение сверху */
+    left: 10px; /* Расположение слева */
+}
+
+.quote::after {
+    content: "”"; /* Правые кавычки */
+    font-size: 2em; /* Размер кавычек */
+    color: #d67341; /* Цвет кавычек */
+    position: absolute; /* Позиционирование */
+    bottom: -10px; /* Расположение снизу */
+    right: 10px; /* Расположение справа */
+}
+
+
+
+.contact-info {
+    background-color: #f4f4f4; /* Светлый фон */
+    border: 1px solid #d67341; /* Оранжевая граница */
+    padding: 20px; /* Отступы внутри блока */
+    border-radius: 10px; /* Закругленные углы */
+    margin: 20px 0; /* Отступы сверху и снизу */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.contact-info h2 {
+    color: #d67341; /* Цвет заголовка */
+    margin-bottom: 10px; /* Отступ снизу у заголовка */
+}
+
+.contact-info p {
+    color: #555; /* Цвет текста */
+    font-size: 16px; /* Размер шрифта */
+}
+
+.contact-info a {
+    color: #d67341; /* Цвет ссылки */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: bold; /* Жирный текст */
+}
+
+.contact-info a:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <img class="logo" src="LOGO2-removоfоebg-preview.png" alt="">
+        <!-- Название сайта -->
+        <div class="navbar-brand">Tourist's Diary</div>
+
+        <!-- Меню -->
+        <div class="navbar-menu">
+            <a href="index.html" class="navbar-item">Главная</a>
+            <a href="news.html" class="navbar-item">Новости</a>
+            <a href="tips.html" class="navbar-item">Советы</a>
+            <a href="about.html" class="navbar-item">О нас</a>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="social-icons">
+            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+    </div>
+
+
+    <div class="photo">
+        <img src="https://s1.1zoom.ru/b5050/377/Sunrises_and_sunsets_505653_2560x1440.jpg" alt="">
+        <div class="caption"><p>Мы — команда путешественников, стремящихся вдохновить других исследовать мир. Мы верим, что каждая поездка — это возможность для роста и открытия нового.</p></div>
+    </div>
+
+    <div class="new-containers">
+        <div class="box">
+            <div class="top-half">
+                <i class="fa-solid fa-book-open" style="color: #ffffff;"></i>
+                <p style="color: #ffffff; margin-top: 5px;">Советы</p>
+            </div>
+            <div class="bottom-half">
+                <p>
+                    Мы понимаем, что планирование поездки может быть сложным. Наша команда предлагает вам проверенные советы и хитрости, которые помогут сделать ваше путешествие комфортным и незабываемым.
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="top-half">
+                <i class="fas fa-newspaper" style="font-size: 56px; color: #ffffff;"></i>
+                <p style="color: #ffffff; margin-top: 5px;">Новости</p>
+            </div>
+            <div class="bottom-half">
+                <p>
+                    Мы отслеживаем все новинки в мире туризма и путешествий, чтобы держать вас в курсе самых актуальных событий и трендов. Наша команда поделится с вами последними новостями, которые могут вдохновить вас на новые приключения.
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="top-half">
+                <i class="fas fa-lightbulb" style="font-size: 56px; color: #ffffff;"></i>
+                <p style="color: #ffffff; margin-top: 5px;">Идеи</p>
+
+            </div>
+            <div class="bottom-half">
+                <p>
+                    Мы всегда ищем уникальные и интересные места для путешествий. Наша команда готова поделиться с вами лучшими идеями, которые сделают ваше следующее путешествие по-настоящему особенным. Откройте для себя новые горизонты вместе с нами!
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="top-half"><i class="fas fa-heart" style="font-size: 56px; color: #ffffff;"></i>
+                <p style="color: #ffffff; margin-top: 5px;">Вдохновление</p>
+            </div>
+            <div class="bottom-half">
+                <p>
+                    Наша команда стремится объединить людей, которые любят путешествовать и открывать новые культуры. чтобы делиться опытом, вдохновляться и находить единомышленников. Вместе мы можем сделать мир большим и дружелюбным местом!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="position: relative;">
+        <div class="circle-image" style="position: absolute; top: 50px; left: 90px;">
+            <img src="https://fotobase.co/files/img/photo/chelovek-na-vershine-gory/chelovek-na-vershine-gory-22.webp"
+                alt="Travel Image">
+        </div>
+        <div class="text-box" style="position: absolute; top: 500px; left: 100px;">
+            <h1>Мир огромен. Мы поможем вам его исследовать.</h1>
+            <p>"Мы верим, что каждое путешествие — это возможность открыть не только новые места, но и себя. Давайте сделаем ваши приключения незабываемыми, наполнив их яркими эмоциями и уникальными впечатлениями."</p>
+        </div>
+        <div class="circle-decor small" style="position: absolute; top: 500px; left: 100px;"></div>
+        <div class="circle-decor large" style="position: absolute; top: 400px; left: 900px;"></div>
+        <div class="gradient-decor small" style="position: absolute; top: 200px; left: 650px;"></div>
+        <div class="gradient-decor large" style="position: absolute; top: 120px; left: 1100px;"></div>
+    </div>
+
+
+    <blockquote class="quote">
+        <p>«Путешествия — это единственное, что вы покупаете, что делает вас богаче.»</p>
+    </blockquote>
+
+    <div class="contact-info">
+        <h2>Свяжитесь с нами</h2>
+        <p>Мы всегда рады общению! Напишите нам на <a href="mailto:info@travelblog.com">info@travelblog.com</a></p>
+        <div class="contact-section">
+            <h2>КОНТАКТЫ</h2>
+            <div class="contact-info">
+                
+                <p><i class="fas fa-phone"></i> 8615741844 - Капитан Приключений — создает креативный контент и вдохновляет команду.</p>
+                <p><i class="fas fa-phone"></i> 5272291386 - Хранитель Вдохновения — собирает и делится вдохновляющими историями других путешественников.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
