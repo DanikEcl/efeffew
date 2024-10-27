@@ -306,6 +306,8 @@ a:hover {
     /* Название сайта */
     .navbar-brand {
         font-size: 20px; /* Уменьшаем размер текста */
+	    text-align: center; /* Center-align the text */
+        margin: 0 auto;
     }
 
     /* Размеры стрелки вниз */
